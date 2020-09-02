@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Strength",
+    "shortName": "str",
+    "racialBonus": 0,
+    "pointCoast": 0
+  },
+  {
+    "name": "Dexterity",
+    "shortName": "dex",
+    "racialBonus": 0,
+    "pointCoast": 0
+  },
+  {
+    "name": "Constitution",
+    "shortName": "con",
+    "racialBonus": 0,
+    "pointCoast": 0
+  },
+  {
+    "name": "Intelligence",
+    "shortName": "int",
+    "racialBonus": 0,
+    "pointCoast": 0
+  },
+  {
+    "name": "Wisdom",
+    "shortName": "wis",
+    "racialBonus": 0,
+    "pointCoast": 0
+  },
+  {
+    "name": "Charisma",
+    "shortName": "cha",
+    "racialBonus": 0,
+    "pointCoast": 0
+  }
+]
