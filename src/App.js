@@ -16,21 +16,17 @@ class App extends Component {
   };
   updateSlectedRace = (e) => {
     const { races } = this.state;
-    const selectedRace = races
+    const raceFliter = races
       .filter((races) => races.id === Number(e.target.value))
       .reduce((acc, currValue) => acc.concat(currValue), []);
 
-    const oneRace = selectedRace[0];
+    const selectedRace = raceFliter[0];
 
-    if (oneRace.hasSub === false) {
+    if (selectedRace.hasSub === false) {
       this.setState({ isVisible: false });
-      const racialBonus = selectedRace
-        .map((selectedRace) => selectedRace.racialBonus)
-        .reduce((acc, currValue) => acc.concat(currValue), []);
-
-      this.setState({ racialBonus: racialBonus });
+      this.setState({ racialBonus: selectedRace.racialBonus });
     }
-    if (oneRace.hasSub === true) {
+    if (selectedRace.hasSub === true) {
       this.setState({ isVisible: true });
     }
 
