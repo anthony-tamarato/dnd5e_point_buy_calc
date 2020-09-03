@@ -11,7 +11,14 @@ export class CalcTable extends Component {
 
   render() {
     const { attributes } = this.state;
-    const { races, racialBonus, isVisible } = this.props;
+    const {
+      races,
+      racialBonus,
+      isVisible,
+      selectedRace,
+      subraceOptions,
+      disableRace,
+    } = this.props;
 
     const raceDropDown = races
       .sort((a, b) => a.name.localeCompare(b.name))
@@ -27,11 +34,13 @@ export class CalcTable extends Component {
         <div>
           <label for="race"></label>
           <select name="race" onChange={this.props.onRaceSelect}>
-            <option>Select Race</option>
+            <option disabled={disableRace}>Select Race</option>
             {raceDropDown}
           </select>
         </div>
-        {isVisible === true && <SubraceSelect />}
+        {isVisible === true && (
+          <SubraceSelect subraceOptions={subraceOptions} />
+        )}
         <table>
           <thead>
             <tr>

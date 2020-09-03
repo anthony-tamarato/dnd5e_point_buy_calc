@@ -1,30 +1,25 @@
 import React, { Component } from "react";
 
-import data from "../data/Subrace.json";
-
 export class SubraceSelect extends Component {
-  state = {
-    subRaceList: data,
-  };
-
   render() {
-    /*
-        const { subRaceList } = this.state;
-        const { selectedRaceId } = this.props;
+    const { subraceOptions } = this.props;
 
-        const subRaceDropDown = subRaceList
-        .sort((a, b) => a.name.localeCompare(b.name))
-        .reduce((subRaceList) => subRaceList.baseRaceRef === selectedRaceId )
-        .map((subRaceList) => 
-            return (
-                <option key={subRaceList.id} value={subRaceList.id}>
-                {subRaceList.name}
-                </option>
-            );
-*/
+    const subraceDropDown = subraceOptions
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((subraceOptions) => {
+        return (
+          <option key={subraceOptions.id} value={subraceOptions.id}>
+            {subraceOptions.name}
+          </option>
+        );
+      });
+
     return (
       <>
-        <p>here</p>
+        <select name="subrace">
+          <option>Select Subrace</option>
+          {subraceDropDown}
+        </select>
       </>
     );
   }

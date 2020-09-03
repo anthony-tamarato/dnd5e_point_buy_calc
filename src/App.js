@@ -5,17 +5,22 @@ import Header from "./components/layout/Header";
 import CalcTable from "./components/CalcTable";
 import RacialTraits from "./components/RacialTraits";
 
-import data from "./data/Races.json";
+import raceData from "./data/Races.json";
+import subraceData from "./data/Subrace.json";
 
 class App extends Component {
   state = {
-    races: data,
+    races: raceData,
+    subraces: subraceData,
     selectedRace: [],
     racialBonus: [],
     isVisible: false,
+    subraceOptions: [],
+    disableRace: false,
   };
   updateSlectedRace = (e) => {
-    const { races } = this.state;
+    this.setState({ disableRace: true });
+    const { races, subraces } = this.state;
     const raceFliter = races
       .filter((races) => races.id === Number(e.target.value))
       .reduce((acc, currValue) => acc.concat(currValue), []);
@@ -28,13 +33,26 @@ class App extends Component {
     }
     if (selectedRace.hasSub === true) {
       this.setState({ isVisible: true });
+
+      const subraceOptions = subraces.filter(
+        (subraces) => subraces.baseRaceRef === Number(selectedRace.id)
+      );
+
+      this.setState({ subraceOptions: subraceOptions });
     }
 
     this.setState({ selectedRace: selectedRace });
   };
 
   render() {
-    const { races, selectedRace, racialBonus, isVisible } = this.state;
+    const {
+      races,
+      selectedRace,
+      racialBonus,
+      isVisible,
+      subraceOptions,
+      disableRace,
+    } = this.state;
 
     return (
       <Router>
@@ -47,6 +65,8 @@ class App extends Component {
               racialBonus={racialBonus}
               onRaceSelect={this.updateSlectedRace}
               isVisible={isVisible}
+              subraceOptions={subraceOptions}
+              disableRace={disableRace}
             />
             <RacialTraits selectedRace={selectedRace} />
           </div>
