@@ -1,3 +1,4 @@
+[To do list](https://trello.com/b/5gj3wVE0/5e-point-buy-todo)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
