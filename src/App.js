@@ -17,7 +17,13 @@ class App extends Component {
     isVisible: false,
     subraceOptions: [],
     disableRace: false,
+    disableSubrace: false,
+    racialTraits: "",
   };
+
+  //update SlectedRace
+  //When a base race is selected this gets the id value of the race and filters to that race
+  //Then check if the race has a subrace, a veriant, or neither, then update approiate states
   updateSlectedRace = (e) => {
     this.setState({ disableRace: true });
     const { races, subraces } = this.state;
@@ -27,9 +33,16 @@ class App extends Component {
 
     const selectedRace = raceFliter[0];
 
+    this.setState({
+      racialBonus: selectedRace.racialBonus,
+      racialTraits: selectedRace.racialTraits,
+    });
+
     if (selectedRace.hasSub === false) {
-      this.setState({ isVisible: false });
-      this.setState({ racialBonus: selectedRace.racialBonus });
+      this.setState({
+        isVisible: false,
+        disableSubrace: false,
+      });
     }
     if (selectedRace.hasSub === true) {
       this.setState({ isVisible: true });
@@ -43,6 +56,29 @@ class App extends Component {
 
     this.setState({ selectedRace: selectedRace });
   };
+  //end of updateSelectedRace
+
+  //updateSelectedSubrace
+  updateSelectedSubrace = (e) => {
+    this.setState({ disableSubrace: true });
+    const { selectedRace, subraces } = this.state;
+    const subraceFilter = subraces
+      .filter((subraces) => subraces.id === Number(e.target.value))
+      .reduce((acc, currValue) => acc.concat(currValue), []);
+    const selectedSubrace = subraceFilter[0];
+
+    if (selectedRace.hasChoiceBonus === false) {
+      const bonus1 = selectedRace.racialBonus;
+      const bonus2 = selectedSubrace.racialBonus;
+      const racialBonus = [bonus1[0], bonus2[0]];
+      //bonus1 and 2 are arrays
+      this.setState({
+        racialBonus: racialBonus,
+        racialTraits: selectedRace.racialTraits + selectedSubrace.racialTraits,
+      });
+    }
+  };
+  //end of updateSelectedSubrace
 
   render() {
     const {
@@ -52,6 +88,8 @@ class App extends Component {
       isVisible,
       subraceOptions,
       disableRace,
+      disableSubrace,
+      racialTraits,
     } = this.state;
 
     return (
@@ -67,8 +105,10 @@ class App extends Component {
               isVisible={isVisible}
               subraceOptions={subraceOptions}
               disableRace={disableRace}
+              onSubraceSelect={this.updateSelectedSubrace}
+              disableSubrace={disableSubrace}
             />
-            <RacialTraits selectedRace={selectedRace} />
+            <RacialTraits racialTraits={racialTraits} />
           </div>
         </div>
       </Router>

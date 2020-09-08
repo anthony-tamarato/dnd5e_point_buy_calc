@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export class SubraceSelect extends Component {
   render() {
-    const { subraceOptions } = this.props;
+    const { subraceOptions, disableSubrace } = this.props;
 
     const subraceDropDown = subraceOptions
       .sort((a, b) => a.name.localeCompare(b.name))
@@ -16,8 +16,8 @@ export class SubraceSelect extends Component {
 
     return (
       <>
-        <select name="subrace">
-          <option>Select Subrace</option>
+        <select name="subrace" onChange={this.props.onSubraceSelect}>
+          <option disabled={disableSubrace}>Select Subrace</option>
           {subraceDropDown}
         </select>
       </>

@@ -17,6 +17,8 @@
     "subrace": [],
     "hasVariant": false,
     "variantRacialBonus": [],
+    "hasChoiceBonus": false,
+    "choiceBonuses": [],
     "sorce": "PHB"
   },
   {
@@ -37,6 +39,8 @@
     "subrace": [],
     "hasVariant": false,
     "variantRacialBonus": [],
+    "hasChoiceBonus": false,
+    "choiceBonuses": [],
     "sorce": "PHB"
   },
   {
@@ -53,6 +57,8 @@
     "subrace": ["1", "2"],
     "hasVariant": false,
     "variantRacialBonus": [],
+    "hasChoiceBonus": false,
+    "choiceBonuses": [],
     "sorce": "PHB"
   }
 ]

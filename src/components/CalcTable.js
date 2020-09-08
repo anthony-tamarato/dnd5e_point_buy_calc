@@ -18,6 +18,9 @@ export class CalcTable extends Component {
       selectedRace,
       subraceOptions,
       disableRace,
+      onRaceSelect,
+      onSubraceSelect,
+      disableSubrace,
     } = this.props;
 
     const raceDropDown = races
@@ -39,7 +42,11 @@ export class CalcTable extends Component {
           </select>
         </div>
         {isVisible === true && (
-          <SubraceSelect subraceOptions={subraceOptions} />
+          <SubraceSelect
+            subraceOptions={subraceOptions}
+            onSubraceSelect={this.props.onSubraceSelect}
+            disableSubrace={disableSubrace}
+          />
         )}
         <table>
           <thead>

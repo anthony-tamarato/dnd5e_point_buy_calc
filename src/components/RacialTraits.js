@@ -2,9 +2,9 @@ import React, { Component } from "react";
 
 export class RacialTraits extends Component {
   render() {
-    const { selectedRace } = this.props;
+    const { racialTraits } = this.props;
 
-    return <>{selectedRace.racialTraits}</>;
+    return <>{racialTraits}</>;
   }
 }
 
