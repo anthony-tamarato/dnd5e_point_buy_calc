@@ -19,6 +19,8 @@
     "variantRacialBonus": [],
     "hasChoiceBonus": false,
     "choiceBonuses": [],
+    "choiceValue": 0,
+    "numOfChoice": 0,
     "sorce": "PHB"
   },
   {
@@ -41,6 +43,8 @@
     "variantRacialBonus": [],
     "hasChoiceBonus": false,
     "choiceBonuses": [],
+    "choiceValue": 0,
+    "numOfChoice": 0,
     "sorce": "PHB"
   },
   {
@@ -59,6 +63,68 @@
     "variantRacialBonus": [],
     "hasChoiceBonus": false,
     "choiceBonuses": [],
+    "choiceValue": 0,
+    "numOfChoice": 0,
+    "sorce": "PHB"
+  },
+  {
+    "id": 4,
+    "name": "Half-Elf",
+    "racialBonus": [
+      {
+        "name": "cha",
+        "value": 2
+      }
+    ],
+    "racialTraits": "Darkvision, Fey Ancestry, Skill Versatility",
+    "hasSub": false,
+    "subrace": [],
+    "hasVariant": false,
+    "variantRacialBonus": [],
+    "hasChoiceBonus": true,
+    "choiceBonuses": ["str", "dex", "con", "int", "wis"],
+    "choiceValue": 1,
+    "numOfChoice": 2,
+    "sorce": "PHB"
+  },
+  {
+    "id": 5,
+    "name": "Human",
+    "racialBonus": [
+      {
+        "name": "str",
+        "value": 1
+      },
+      {
+        "name": "dex",
+        "value": 1
+      },
+      {
+        "name": "con",
+        "value": 1
+      },
+      {
+        "name": "int",
+        "value": 1
+      },
+      {
+        "name": "wis",
+        "value": 1
+      },
+      {
+        "name": "cha",
+        "value": 1
+      }
+    ],
+    "racialTraits": "",
+    "hasSub": false,
+    "subrace": [],
+    "hasVariant": true,
+    "variantRacial": ["3"],
+    "hasChoiceBonus": false,
+    "choiceBonuses": [],
+    "choiceValue": 0,
+    "numOfChoice": 0,
     "sorce": "PHB"
   }
 ]

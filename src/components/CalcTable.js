@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Row from "./Row";
 import SubraceSelect from "./SubraceSelect";
+import ChooseBonus from "./ChooseBonus";
+import VariantToggle from "./VariantToggle";
 
 import data from "../data/Attributes.json";
 
@@ -15,12 +17,15 @@ export class CalcTable extends Component {
       races,
       racialBonus,
       isVisible,
-      selectedRace,
       subraceOptions,
       disableRace,
-      onRaceSelect,
-      onSubraceSelect,
       disableSubrace,
+      hasChoiceBonus,
+      choiceBonues,
+      choiceBonusValue,
+      numOfChoice,
+      disableBonusCheckbox,
+      hasVariant,
     } = this.props;
 
     const raceDropDown = races
@@ -40,12 +45,24 @@ export class CalcTable extends Component {
             <option disabled={disableRace}>Select Race</option>
             {raceDropDown}
           </select>
+          {hasVariant === true && (
+            <VariantToggle toggleVariant={this.props.toggleVariant} />
+          )}
         </div>
         {isVisible === true && (
           <SubraceSelect
             subraceOptions={subraceOptions}
             onSubraceSelect={this.props.onSubraceSelect}
             disableSubrace={disableSubrace}
+          />
+        )}
+        {hasChoiceBonus === true && (
+          <ChooseBonus
+            choiceBonues={choiceBonues}
+            choiceBonusValue={choiceBonusValue}
+            numOfChoice={numOfChoice}
+            handleCheckboxChange={this.props.handleCheckboxChange}
+            disableBonusCheckbox={disableBonusCheckbox}
           />
         )}
         <table>

@@ -12,6 +12,8 @@
     "racialTraits": " Dwarven Toughness",
     "hasChoiceBonus": false,
     "choiceBonuses": [],
+    "choiceValue": 0,
+    "numOfChoice": 0,
     "sorce": "PHB"
   },
   {
@@ -27,6 +29,20 @@
     "racialTraits": " Dwarven Armor Training",
     "hasChoiceBonus": false,
     "choiceBonuses": [],
+    "choiceValue": 0,
+    "numOfChoice": 0,
+    "sorce": "PHB"
+  },
+  {
+    "id": 3,
+    "name": "Human",
+    "baseRaceRef": 5,
+    "racialBonus": [],
+    "racialTraits": "Gain a feat, Proficiency in one skill",
+    "hasChoiceBonus": true,
+    "choiceBonuses": ["str", "dex", "con", "int", "wis", "cha"],
+    "choiceValue": 1,
+    "numOfChoice": 2,
     "sorce": "PHB"
   }
 ]

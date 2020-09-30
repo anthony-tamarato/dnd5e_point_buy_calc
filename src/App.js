@@ -19,7 +19,32 @@ class App extends Component {
     disableRace: false,
     disableSubrace: false,
     racialTraits: "",
+    hasChoiceBonus: false,
+    choiceBonues: [],
+    choiceBonusValue: 0,
+    numOfChoice: 0,
+    disableBonusCheckbox: false,
+    hasVariant: false,
+    test: false,
   };
+
+  /*
+  check if the seleceted race lets the user pick their stat bonuses and if so
+  enable the checkboxes
+  */
+  hasChoiceBonus = (playerRace) => {
+    if (playerRace.hasChoiceBonus === false) {
+      return this.setState({ hasChoiceBonus: false });
+    }
+    this.selectedCheckboxes = new Set();
+    this.setState({
+      hasChoiceBonus: true,
+      choiceBonues: playerRace.choiceBonuses,
+      choiceBonusValue: playerRace.choiceValue,
+      numOfChoice: playerRace.numOfChoice,
+    });
+  };
+  //end of hasChoiceBonus
 
   //update SlectedRace
   //When a base race is selected this gets the id value of the race and filters to that race
@@ -38,13 +63,18 @@ class App extends Component {
       racialTraits: selectedRace.racialTraits,
     });
 
+    if (selectedRace.hasVariant === true) {
+      this.setState({ hasVariant: true });
+      this.variantCheckboxes = new Set();
+    } else {
+      this.setState({ hasVariant: false });
+    }
     if (selectedRace.hasSub === false) {
       this.setState({
         isVisible: false,
         disableSubrace: false,
       });
-    }
-    if (selectedRace.hasSub === true) {
+    } else {
       this.setState({ isVisible: true });
 
       const subraceOptions = subraces.filter(
@@ -53,6 +83,8 @@ class App extends Component {
 
       this.setState({ subraceOptions: subraceOptions });
     }
+
+    this.hasChoiceBonus(selectedRace);
 
     this.setState({ selectedRace: selectedRace });
   };
@@ -80,6 +112,40 @@ class App extends Component {
   };
   //end of updateSelectedSubrace
 
+  //handleBonusChange
+  //handle onChange for bonus checkboxes
+  toggleCheckbox = (choiceBonues) => {
+    if (this.selectedCheckboxes.size === 1) {
+      this.setState(({ disableBonusCheckbox }) => ({
+        disableBonusCheckbox: !disableBonusCheckbox,
+      }));
+    } else {
+      this.setState({ disableBonusCheckbox: false });
+    }
+    const { choiceBonusValue, selectedRace } = this.state;
+    if (this.selectedCheckboxes.has(choiceBonues)) {
+      this.selectedCheckboxes.delete(choiceBonues);
+    } else {
+      this.selectedCheckboxes.add(choiceBonues);
+    }
+    const bonus1 = selectedRace.racialBonus;
+    const racialBonus = [bonus1[0]];
+    for (const checkbox of this.selectedCheckboxes) {
+      racialBonus.push({ name: checkbox, value: choiceBonusValue });
+    }
+
+    this.setState({ racialBonus: racialBonus });
+  };
+
+  //handle variantCheckboxes
+  toggleVariant = () => {
+    this.setState({ test: true });
+  };
+  //check for checkbox
+  //get variant base scores
+  //then check for choice
+  //end
+
   render() {
     const {
       races,
@@ -90,6 +156,12 @@ class App extends Component {
       disableRace,
       disableSubrace,
       racialTraits,
+      hasChoiceBonus,
+      choiceBonues,
+      choiceBonusValue,
+      numOfChoice,
+      disableBonusCheckbox,
+      hasVariant,
     } = this.state;
 
     return (
@@ -107,6 +179,14 @@ class App extends Component {
               disableRace={disableRace}
               onSubraceSelect={this.updateSelectedSubrace}
               disableSubrace={disableSubrace}
+              hasChoiceBonus={hasChoiceBonus}
+              choiceBonues={choiceBonues}
+              choiceBonusValue={choiceBonusValue}
+              numOfChoice={numOfChoice}
+              handleCheckboxChange={this.toggleCheckbox}
+              disableBonusCheckbox={disableBonusCheckbox}
+              hasVariant={hasVariant}
+              toggleVariant={this.toggleVariant}
             />
             <RacialTraits racialTraits={racialTraits} />
           </div>
